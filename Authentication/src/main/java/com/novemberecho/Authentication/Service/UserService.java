@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 public class UserService implements UserServiceInterface {
 
     private UserRepository userRepository;
+
     public UserService(UserRepository userRepository) {
         super();
         this.userRepository = userRepository;
@@ -44,7 +45,8 @@ public class UserService implements UserServiceInterface {
         if (user == null) {
             throw new UsernameNotFoundException("UserService41: Invalid Username or Password");
         }
-        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));
+        //return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));
+        return new CustomUserDetails(user);
     }
 
     //method which will map roles to authorities
