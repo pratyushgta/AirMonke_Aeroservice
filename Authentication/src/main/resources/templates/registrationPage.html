@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AirMonke Register</title>
+    <title>Affenmeilen Register</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- Include jQuery UI CSS -->
@@ -100,14 +100,14 @@
         <div class="nav-menu-container">
             <!-- Left-aligned menu -->
             <ul class="nav navbar-nav">
-                <li><a href="#">Home</a></li>
+                <li><a href="#" th:href="@{/home}">Home</a></li>
                 <li><a href="#">Book</a></li>
                 <li><a href="#">Manage</a></li>
             </ul>
         </div>
         <div class="navbar-header">
             <!-- Navbar brand with image centered -->
-            <a class="navbar-brand" href="#" th:href="@{/register}">
+            <a class="navbar-brand" href="#" th:href="@{/registration}">
                 <img src="https://github.com/pratyushgta/AirMonke_Aeroplan/blob/master/app/src/main/res/drawable/airmonke_logo_only.png?raw=true"
                      alt="AirMonkeLogo">
             </a>
@@ -144,7 +144,7 @@
             <h3>Personal information</h3>
             <p>Enter your name as it appears on your government-issued photo ID. Knowing more about our members helps us
                 ensure greater account security.</p>
-            <form th:action="@{/register}" method="post" th:object="${user}">
+            <form th:action="@{/registration}" method="post" th:object="${user}">
                 <div class="form-group">
                     <label class="control-label" for="firstName"> First Name </label>
                     <input id="firstName" class="form-control" th:field="*{firstName}"
