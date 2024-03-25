@@ -12,9 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
+@RequestMapping("/accounts")
 public class MainController {
     @Autowired
     UserRepository userRepository;
@@ -27,6 +29,16 @@ public class MainController {
     @GetMapping("/home")
     public String home() {
         return "homePage";
+    }
+
+    @GetMapping("/view-accounts")
+    public String admin_accounts() {
+        return "view-accounts";
+    }
+
+    @GetMapping("/accessDenied")
+    public String accessDenied() {
+        return "accessDenied";
     }
 
     @GetMapping

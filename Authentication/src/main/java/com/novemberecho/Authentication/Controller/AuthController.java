@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/registration")
+@RequestMapping("/accounts/registration")
 public class AuthController {
     @RequestMapping("/test")
     String display() {
@@ -32,7 +32,7 @@ public class AuthController {
     @PostMapping
     public String registerUserAccount(@ModelAttribute("user") UserRegistrationDto registrationDto) {
         userService.save(registrationDto);
-        return "redirect:/registration?success";
+        return "redirect:/accounts/registration?success";
     }
 
 }

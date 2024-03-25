@@ -3,7 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
-    <title>AirMonke Hub</title>
+    <title>AirMonke Accounts [ADMIN]</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- Include jQuery UI CSS -->
@@ -133,17 +133,6 @@
 <br>
 <br>
 <br>
-<div sec:authorize="isAuthenticated()">Text visible only to authenticated users.</div>
-Authenticated username:
-<div sec:authentication="name"></div>
-Authenticated user's firstName:
-<span th:text="${firstName}"></span>
-
-<!--
-<h1 th:if="${#authorization.expression('isAuthenticated()')}"><span sec:authentication="">X</span>
-</h1>
-<h1 th:if="${not #authorization.expression('isAuthenticated()')}">Welcome User</h1>
-
-<p>Welcome <span sec:authentication="principal.getUsername()"></span></span></p>-->
+<h1>ACCOUNTS</h1>
 </body>
 </html>

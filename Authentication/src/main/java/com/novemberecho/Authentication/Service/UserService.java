@@ -34,8 +34,13 @@ public class UserService implements UserServiceInterface {
 
     @Override
     public User save(UserRegistrationDto registrationDto) {
+        String r = "";
+        if (registrationDto.getEmail().contains("admin"))
+            r = "ROLE_ADMIN";
+        else
+            r = "ROLE_USER";
         User user = new User(registrationDto.getFirstName(), registrationDto.getLastName(),
-                registrationDto.getEmail(), passwordEncoder.encode(registrationDto.getPassword()), registrationDto.getGender(), registrationDto.getDob(), Arrays.asList(new Role("ROLE_USER")));
+                registrationDto.getEmail(), passwordEncoder.encode(registrationDto.getPassword()), registrationDto.getGender(), registrationDto.getDob(), Arrays.asList(new Role(r)));
         return userRepository.save(user);
     }
 

@@ -93,21 +93,21 @@
         <div class="nav-menu-container">
             <!-- Left-aligned menu -->
             <ul class="nav navbar-nav">
-                <li><a href="#" th:href="@{/home}">Home</a></li>
+                <li><a href="#" th:href="@{/accounts/home}">Home</a></li>
                 <li><a href="#">Book</a></li>
                 <li><a href="#">Manage</a></li>
             </ul>
         </div>
         <div class="navbar-header">
             <!-- Navbar brand with image centered -->
-            <a class="navbar-brand" href="#" th:href="@{/home}">
+            <a class="navbar-brand" href="#" th:href="@{/accounts/home}">
                 <img src="https://github.com/pratyushgta/AirMonke_Aeroplan/blob/master/app/src/main/res/drawable/airmonke_logo_only.png?raw=true"
                      alt="AirMonkeLogo">
             </a>
         </div>
         <div class="login-btn-container">
             <ul class="nav navbar-nav">
-                <li><a href="#" th:href="@{/registration}">Join Now</a></li>
+                <li><a href="#" th:href="@{/accounts/registration}">Join Now</a></li>
             </ul>
         </div>
     </div>
@@ -126,7 +126,7 @@
                  alt="AffenmeilenLogo">
             <h1>Welcome Back!</h1>
 
-            <form th:action="@{/login}" method="post">
+            <form th:action="@{/accounts/login}" method="post">
                 <!-- ERROR MESSAGE -->
                 <div th:if="${param.error}">
                     <div class="alert alert-danger">Uh oh! Looks like you're not a registered monke :(
@@ -160,7 +160,7 @@
                 </div>
             </form>
             <div class="form-group">
-						<span>New user? <a href="/" th:href="@{/registration}">Register
+						<span>New user? <a href="/" th:href="@{/accounts/registration}">Register
 								here</a></span>
             </div>
         </div>

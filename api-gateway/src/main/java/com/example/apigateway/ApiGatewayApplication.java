@@ -1,4 +1,10 @@
-package com.novemberecho.APIGateway;
+/**
+ * Main class of API Gateway
+ * MSA-E6
+ *
+ * @author Pratyush Kumar (github.com/pratyushgta)
+ */
+package com.example.apigateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

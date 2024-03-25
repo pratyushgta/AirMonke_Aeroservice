@@ -28,23 +28,30 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/home**",
+                        .requestMatchers("/accounts/home**",
                                 "/js/**",
                                 "/css/**",
                                 "/img/**",
-                                "/registration").permitAll()
+                                "/accounts/registration",
+                                "/accounts/login").permitAll()
+                        .requestMatchers("/accounts/view-accounts/**").hasAuthority("ROLE_ADMIN")
                         .anyRequest().authenticated()
                 )
-                .formLogin(form -> form.loginPage("/login")
+                .formLogin(form -> form.loginPage("/accounts/login")
+                        .loginProcessingUrl("/accounts/login")
+                        .defaultSuccessUrl("/accounts/home",true)
                         .permitAll() //permit all users to access login page
                 )
                 .logout(logout -> logout
                         .invalidateHttpSession(true)
                         .clearAuthentication(true)
-                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                        .logoutSuccessUrl("/login?logout") //once user clicks on logout, it redirects to login screen with logout message
-                        .permitAll());
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/accounts/logout"))
+                        .logoutSuccessUrl("/accounts/login?logout") //once user clicks on logout, it redirects to login screen with logout message
+                        .permitAll())
+                .exceptionHandling((exception) -> exception.accessDeniedPage("/accounts/accessDenied"));
+
         return http.build();
     }
 

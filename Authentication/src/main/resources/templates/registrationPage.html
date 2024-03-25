@@ -100,21 +100,21 @@
         <div class="nav-menu-container">
             <!-- Left-aligned menu -->
             <ul class="nav navbar-nav">
-                <li><a href="#" th:href="@{/home}">Home</a></li>
+                <li><a href="#" th:href="@{/accounts/home}">Home</a></li>
                 <li><a href="#">Book</a></li>
                 <li><a href="#">Manage</a></li>
             </ul>
         </div>
         <div class="navbar-header">
             <!-- Navbar brand with image centered -->
-            <a class="navbar-brand" href="#" th:href="@{/registration}">
+            <a class="navbar-brand" href="#" th:href="@{/accounts/registration}">
                 <img src="https://github.com/pratyushgta/AirMonke_Aeroplan/blob/master/app/src/main/res/drawable/airmonke_logo_only.png?raw=true"
                      alt="AirMonkeLogo">
             </a>
         </div>
         <div class="login-btn-container">
             <ul class="nav navbar-nav">
-                <li><a href="#" th:href="@{/login}">Login</a></li>
+                <li><a href="#" th:href="@{/accounts/login}">Login</a></li>
             </ul>
         </div>
     </div>
@@ -144,7 +144,7 @@
             <h3>Personal information</h3>
             <p>Enter your name as it appears on your government-issued photo ID. Knowing more about our members helps us
                 ensure greater account security.</p>
-            <form th:action="@{/registration}" method="post" th:object="${user}">
+            <form th:action="@{/accounts/registration}" method="post" th:object="${user}">
                 <div class="form-group">
                     <label class="control-label" for="firstName"> First Name </label>
                     <input id="firstName" class="form-control" th:field="*{firstName}"
@@ -188,7 +188,7 @@
                     <button type="submit" class="btn btn-success">Register Now!</button>
                     <br>
                     <br>
-                    <span>Already registered? <a href="/" th:href="@{/login}">Login
+                    <span>Already registered? <a href="/" th:href="@{/accounts/login}">Login
         here</a></span>
                 </div>
             </form>

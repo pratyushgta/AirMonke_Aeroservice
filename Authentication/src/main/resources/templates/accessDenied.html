@@ -133,17 +133,6 @@
 <br>
 <br>
 <br>
-<div sec:authorize="isAuthenticated()">Text visible only to authenticated users.</div>
-Authenticated username:
-<div sec:authentication="name"></div>
-Authenticated user's firstName:
-<span th:text="${firstName}"></span>
-
-<!--
-<h1 th:if="${#authorization.expression('isAuthenticated()')}"><span sec:authentication="">X</span>
-</h1>
-<h1 th:if="${not #authorization.expression('isAuthenticated()')}">Welcome User</h1>
-
-<p>Welcome <span sec:authentication="principal.getUsername()"></span></span></p>-->
+<h1>Un oh! Looks like you're trying to enter the backrooms!</h1>
 </body>
 </html>
