@@ -1,7 +1,10 @@
 package com.novemberecho.Authentication.Controller;
 
 
+import com.novemberecho.Authentication.DTO.UserRegistrationDto;
+import com.novemberecho.Authentication.Entity.User;
 import com.novemberecho.Authentication.Repository.UserRepository;
+import com.novemberecho.Authentication.Service.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -30,6 +33,7 @@ public class MainController {
         //return "homePage";
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
+            //return restTemplate.getForObject("http://localhost:9090/admin/admin-home", Flight[].class);
             return "redirect:http://localhost:9090/admin/admin-home";
         } else {
             return "redirect:http://localhost:9090/search/home";
@@ -46,6 +50,17 @@ public class MainController {
         return "accessDenied";
     }
 
+    @GetMapping("/get-user-details")
+    public String response() {
+        String name = "";
+        Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+        if (loggedInUser == null) {
+            name = null;
+        } else {
+            name = userRepository.findByEmail(loggedInUser.getName()).getFirstName();
+        }
+        return name;
+    }
 }
 
     /*@GetMapping

@@ -1,13 +1,11 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>AirMonke Admin Hub</title>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous">
-
+    <title>AirMonke Admin Hub</title>
     <style>
         body {
             background-color: rgb(216, 213, 190);
@@ -67,6 +65,7 @@
         }
 
     </style>
+
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -74,7 +73,7 @@
         <div class="nav-menu-container">
             <!-- Left-aligned menu -->
             <ul class="nav navbar-nav">
-                <li><a href="#" th:href="@{/admin}">Admin Home</a></li>
+                <li><a href="#" th:href="@{/admin/admin-home}">Admin Home</a></li>
             </ul>
         </div>
         <div class="navbar-header">
@@ -91,35 +90,46 @@
         </div>
     </div>
 </nav>
-<div class="jumbotron text-center">
-    <h1 class="display-4">Ready for 911?</h1>
-    <p>Easily manage your data from this admin
-        <mark>CMS</mark>
-    </p>
-</div>
-<div class="container-fluid">
+<br>
+<br>
+<br>
+<br>
+
+<div class="container">
     <div class="row">
-        <div class="col-sm-3 pt-3">
-            <div class="card" style="background-color:white;">
-                <div class="card-body">
-                    <h4 class="card-title">Modify</h4>
-                    <p class="card-text">Add, delete,update Routes</p>
-                    <a href="#" th:href="@{/admin/modifyRoutes}" class="card-link btn btn-primary">Manage</a>
+        <div class="col-sm-4">
+            <form th:action="@{/admin/modifyRoutes/add}" method="post" th:object="${Routes}">
+                <h2>Modify Route</h2>
+                <h5>Working with route: <span th:text="${Routes.routes_id}"></span> from <span
+                        th:text="${Routes.airport}"></span>, <span th:text="${Routes.city}"></span>, <span th:text="${Routes.country}"></span>
+                </h5>
+                <input type="hidden" name="id" th:field="*{routes_id}">
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" class="form-control" required th:field="*{city}" name="city"
+                           id="city"
+                           placeholder="Enter from destination">
+
+                    <label for="airport">Airport Name</label>
+                    <input type="text" class="form-control" required th:field="*{airport}" name="airport"
+                           id="airport"
+                           placeholder="Enter airport">
+
+                    <label for="state">State</label>
+                    <input type="text" class="form-control" required th:field="*{state}" name="state"
+                           id="state"
+                           placeholder="Enter state">
+
+                    <label for="country">Country</label>
+                    <input type="text" class="form-control" required th:field="*{country}" name="country"
+                           id="country"
+                           placeholder="Enter country">
 
                 </div>
-            </div>
-        </div>
-        <div class="col-sm-3 pt-3">
-            <div class="card" style="background-color:white;">
-                <div class="card-body">
-                    <h4 class="card-title">Flights</h4>
-                    <p class="card-text">Manage flights here!</p>
-                    <a href="#" th:href="@{/admin/modifyFlight}" class="card-link btn btn-primary">Manage</a>
 
-                </div>
-            </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
         </div>
-
     </div>
 </div>
 

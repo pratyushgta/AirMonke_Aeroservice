@@ -1,12 +1,11 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>AirMonke Admin Hub</title>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous">
+    <title>AirMonke Admin Hub</title>
 
     <style>
         body {
@@ -74,7 +73,7 @@
         <div class="nav-menu-container">
             <!-- Left-aligned menu -->
             <ul class="nav navbar-nav">
-                <li><a href="#" th:href="@{/admin}">Admin Home</a></li>
+                <li><a href="#" th:href="@{/admin/admin-home}">Admin Home</a></li>
             </ul>
         </div>
         <div class="navbar-header">
@@ -91,36 +90,44 @@
         </div>
     </div>
 </nav>
-<div class="jumbotron text-center">
-    <h1 class="display-4">Ready for 911?</h1>
-    <p>Easily manage your data from this admin
-        <mark>CMS</mark>
-    </p>
-</div>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-3 pt-3">
-            <div class="card" style="background-color:white;">
-                <div class="card-body">
-                    <h4 class="card-title">Modify</h4>
-                    <p class="card-text">Add, delete,update Routes</p>
-                    <a href="#" th:href="@{/admin/modifyRoutes}" class="card-link btn btn-primary">Manage</a>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
 
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3 pt-3">
-            <div class="card" style="background-color:white;">
-                <div class="card-body">
-                    <h4 class="card-title">Flights</h4>
-                    <p class="card-text">Manage flights here!</p>
-                    <a href="#" th:href="@{/admin/modifyFlight}" class="card-link btn btn-primary">Manage</a>
+    <a th:href="@{/admin/modifyRoutes/add}" style="margin: 20px 0" class="btn btn-primary">Add Route</a>
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Route ID</th>
+            <th scope="col">Airport</th>
+            <th scope="col">City</th>
+            <th scope="col">State</th>
+            <th scope="col">Country</th>
+            <th scope="col">Delete</th>
+            <th scope="col">Update</th>
+        </tr>
+        </thead>
+        <tbody>
 
-                </div>
-            </div>
-        </div>
+        <tr th:each="route, iStat : ${Routes}">
+            <!--<th scope="row" th:text="${iStat.index + 1}">1</th>-->
+            <td th:text="${route.routes_id}">Ri</td>
+            <td th:text="${route.airport}">Vi</td>
+            <td th:text="${route.city}">So</td>
+            <td th:text="${route.state}">So</td>
+            <td th:text="${route.country}">So</td>
 
-    </div>
+
+            <td><a href="" th:href="@{/admin/modifyRoutes/delete/{id}(id=${route.routes_id})}"
+                   class="btn btn-danger">Delete</a></td>
+            <td><a href="" th:href="@{/admin/modifyRoutes/update/{id}(id=${route.routes_id})}"
+                   class="btn btn-warning">Update</a></td>
+
+        </tr>
+        </tbody>
+    </table>
 </div>
 
 
