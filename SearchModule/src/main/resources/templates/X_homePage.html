@@ -16,5 +16,11 @@
 </head>
 <body>
 <h1>HELLO HUB PAGE</h1>
+<div sec:authorize="isAuthenticated()">
+    <p>Text visible only to authenticated users.</p>
+</div>
+<div sec:authorize="!isAuthenticated()">
+    <p>Welcome, anonymous user!</p>
+</div>
 </body>
 </html>

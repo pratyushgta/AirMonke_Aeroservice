@@ -16,6 +16,7 @@ public class AuthController {
     }
 
     private UserService userService;
+
     public AuthController(UserService userService) {
         super();
         this.userService = userService;
@@ -34,9 +35,9 @@ public class AuthController {
     @PostMapping
     public String registerUserAccount(@ModelAttribute("user") UserRegistrationDto registrationDto, HttpServletRequest request) throws ServletException {
         userService.save(registrationDto);
-        request.login(registrationDto.getEmail(), registrationDto.getPassword());
-        //return "redirect:/accounts/registration?success";
-        return "redirect:/";
+        //request.login(registrationDto.getEmail(), registrationDto.getPassword());
+        return "redirect:/accounts/registration?success";
+        //return "redirect:/";
     }
 
 }

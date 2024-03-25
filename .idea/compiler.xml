@@ -10,6 +10,7 @@
         <module name="EurekaServer" />
         <module name="api-gateway" />
         <module name="SearchModule" />
+        <module name="AdminModule" />
         <module name="Authentication" />
       </profile>
     </annotationProcessing>
@@ -23,6 +24,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="APIGateway" options="-parameters" />
+      <module name="AdminModule" options="-parameters" />
       <module name="Authentication" options="-parameters" />
       <module name="EurekaServer" options="-parameters" />
       <module name="SearchModule" options="-parameters" />

@@ -44,12 +44,10 @@ public class SecurityConfiguration {
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form.loginPage("/accounts/login")
-                        .loginProcessingUrl("/accounts/login")
+                        //.loginProcessingUrl("/accounts/login")
                         .permitAll() //permit all users to access login page
-                        .failureUrl("/login?error= true")
+                        //.failureUrl("/login?error= true")
                         .defaultSuccessUrl("/accounts/home", true)
-                        .usernameParameter("email")
-                        .passwordParameter("password")
                 )
                 .logout(logout -> logout
                         .invalidateHttpSession(true)
@@ -74,7 +72,7 @@ public class SecurityConfiguration {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        //auth.authenticationProvider(authenticationProvider());
-        auth.userDetailsService(userService);
+        auth.authenticationProvider(authenticationProvider());
+        //auth.userDetailsService(userService);
     }
 }
