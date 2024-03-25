@@ -17,6 +17,7 @@
       <module name="APIGateway" target="21" />
       <module name="eureka-client" target="21" />
       <module name="eureka-client2" target="21" />
+      <module name="major" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -28,6 +29,7 @@
       <module name="api-gateway" options="-parameters" />
       <module name="eureka-client" options="-parameters" />
       <module name="eureka-client2" options="-parameters" />
+      <module name="major" options="-parameters" />
     </option>
   </component>
 </project>

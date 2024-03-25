@@ -11,6 +11,7 @@
         <option value="$PROJECT_DIR$/eureka-client/pom.xml" />
         <option value="$PROJECT_DIR$/api-gateway/pom.xml" />
         <option value="$PROJECT_DIR$/SearchModule/pom.xml" />
+        <option value="$PROJECT_DIR$/major/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
@@ -18,6 +19,7 @@
         <option value="$PROJECT_DIR$/APIGateway/pom.xml" />
         <option value="$PROJECT_DIR$/eureka-client/pom.xml" />
         <option value="$PROJECT_DIR$/eureka-client2/pom.xml" />
+        <option value="$PROJECT_DIR$/major/pom.xml" />
       </set>
     </option>
   </component>

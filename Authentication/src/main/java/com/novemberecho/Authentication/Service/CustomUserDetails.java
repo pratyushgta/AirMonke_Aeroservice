@@ -5,15 +5,17 @@ import com.novemberecho.Authentication.Entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class CustomUserDetails implements UserDetails {
+public class CustomUserDetails extends User implements UserDetails {
     private User user;
 
     public CustomUserDetails(User user) {
+        super(user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(), user.getGender(), user.getDob(), user.getRoles());
         this.user = user;
     }
 

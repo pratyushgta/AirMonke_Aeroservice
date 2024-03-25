@@ -4,18 +4,17 @@ import com.novemberecho.Authentication.DTO.UserRegistrationDto;
 import com.novemberecho.Authentication.Entity.Role;
 import com.novemberecho.Authentication.Entity.User;
 import com.novemberecho.Authentication.Repository.UserRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -46,12 +45,14 @@ public class UserService implements UserServiceInterface {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        //Optional<User> user = userRepository.findByEmail(username);
         User user = userRepository.findByEmail(username);
         if (user == null) {
             throw new UsernameNotFoundException("UserService41: Invalid Username or Password");
         }
         //return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));
         return new CustomUserDetails(user);
+        //return user.map(CustomUserDetails::new).get();
     }
 
     //method which will map roles to authorities

@@ -2,6 +2,8 @@ package com.novemberecho.Authentication.Controller;
 
 import com.novemberecho.Authentication.DTO.UserRegistrationDto;
 import com.novemberecho.Authentication.Service.UserService;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,9 +32,11 @@ public class AuthController {
     }
 
     @PostMapping
-    public String registerUserAccount(@ModelAttribute("user") UserRegistrationDto registrationDto) {
+    public String registerUserAccount(@ModelAttribute("user") UserRegistrationDto registrationDto, HttpServletRequest request) throws ServletException {
         userService.save(registrationDto);
-        return "redirect:/accounts/registration?success";
+        request.login(registrationDto.getEmail(), registrationDto.getPassword());
+        //return "redirect:/accounts/registration?success";
+        return "redirect:/";
     }
 
 }

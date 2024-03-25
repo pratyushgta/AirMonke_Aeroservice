@@ -1,5 +1,7 @@
 package com.novemberecho.Authentication.config;
 
+import com.novemberecho.Authentication.Entity.User;
+import com.novemberecho.Authentication.Service.CustomUserDetails;
 import com.novemberecho.Authentication.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -35,14 +37,19 @@ public class SecurityConfiguration {
                                 "/css/**",
                                 "/img/**",
                                 "/accounts/registration",
-                                "/accounts/login").permitAll()
+                                "/accounts/login",
+                                "/search/**",
+                                "/").permitAll()
                         .requestMatchers("/accounts/view-accounts/**").hasAuthority("ROLE_ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form.loginPage("/accounts/login")
                         .loginProcessingUrl("/accounts/login")
-                        .defaultSuccessUrl("/accounts/home",true)
                         .permitAll() //permit all users to access login page
+                        .failureUrl("/login?error= true")
+                        .defaultSuccessUrl("/accounts/home", true)
+                        .usernameParameter("email")
+                        .passwordParameter("password")
                 )
                 .logout(logout -> logout
                         .invalidateHttpSession(true)
@@ -67,6 +74,7 @@ public class SecurityConfiguration {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(authenticationProvider());
+        //auth.authenticationProvider(authenticationProvider());
+        auth.userDetailsService(userService);
     }
 }
