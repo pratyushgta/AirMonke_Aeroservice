@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface FlightRepository extends JpaRepository<Flight, Integer> {
-    //List<Flight> findAllByRoutes_id(int id);
+
 }

@@ -141,6 +141,7 @@ public class AdminController {
         return "redirect:/admin/modifyFlight";
     }
 
+
     @GetMapping("/modifyFlight/update/{id}")
     public String modifyFlightUpdate(@PathVariable int id, Model model) {
         Flight flight = flightService.getFlightbyID(id).get();
@@ -158,6 +159,14 @@ public class AdminController {
         model.addAttribute("Routes", routesService.getAllRoutes());
 
         return "adminModifyFlightAdd";
+    }
+
+    // FETCH BY BOOKING MODULE
+    @GetMapping("/fetch/{arrival}/{departure}")
+    public ResponseEntity<List<Flight>> fetchFlightData(@PathVariable String arrival, String departure) {
+        List<Flight> flightData = flightService.getFlightbyCity(arrival, departure);
+        System.out.println(flightData);
+        return new ResponseEntity<>(flightData, HttpStatus.CREATED);
     }
 }
 

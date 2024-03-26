@@ -9,7 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="EurekaServer" />
         <module name="api-gateway" />
-        <module name="SearchModule" />
+        <module name="BookingModule" />
         <module name="AdminModule" />
         <module name="Authentication" />
       </profile>
@@ -26,8 +26,8 @@
       <module name="APIGateway" options="-parameters" />
       <module name="AdminModule" options="-parameters" />
       <module name="Authentication" options="-parameters" />
+      <module name="BookingModule" options="-parameters" />
       <module name="EurekaServer" options="-parameters" />
-      <module name="SearchModule" options="-parameters" />
       <module name="api-gateway" options="-parameters" />
       <module name="eureka-client" options="-parameters" />
       <module name="eureka-client2" options="-parameters" />

@@ -31,6 +31,19 @@ public class FlightService {
         return flightRepository.findById(id);
     }
 
+    public List<Flight> getFlightbyCity(String arrival, String departure) {
+        List<Flight> allFlights = flightRepository.findAll();
+        List<Flight> responseFlightData = null;
+        for (int i = 0; i < allFlights.size(); i++) {
+            if (allFlights.get(i).getArrival_city().equalsIgnoreCase(arrival) && allFlights.get(i).getDeparture_city().equalsIgnoreCase(departure)) {
+                responseFlightData.add(allFlights.get(i));
+            }
+        }
+        return responseFlightData;
+    }
+
+
+
 
 
     /*public List<Flight> getAllFlightByRoute(int id) {
