@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="stylesheet"
@@ -65,6 +65,32 @@
             }
         }
 
+        /* Style for table */
+        .table {
+            background-color: #f8f9fa;
+        }
+
+        .table thead th {
+            background-color: #006363;
+            color: #fff;
+            border-color: #FFA300;
+        }
+
+        .table tbody td {
+            background-color: #fff;
+        }
+
+        /* Style for buttons */
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+
     </style>
 </head>
 <body>
@@ -88,7 +114,7 @@
         </div>
         <div class="login-btn-container">
             <ul class="nav navbar-nav">
-                <li><a href="#" th:href="@{/logout}">Logout</a></li>
+                <li><a href="#" th:href="@{/book/account}">My Account</a></li>
             </ul>
         </div>
     </div>
@@ -99,7 +125,7 @@
 <br>
 <div class="container-fluid">
 
-    <h1>Route Network</h1>
+    <h3>Your Search Results:</h3>
     <table class="table">
         <thead class="thead-light">
         <tr>
@@ -108,26 +134,31 @@
             <th scope="col">ETD</th>
             <th scope="col">To</th>
             <th scope="col">ETA</th>
+            <th scope="col">Book</th>
         </tr>
         </thead>
         <tbody>
 
-        <tr th:each="flight, iStat : ${flights}">
-            <!--<th scope="row" th:text="${iStat.index + 1}">1</th>-->
-            <td th:text="${flight.flight_num}">Larry</td>
-            <td th:text="${flight.departure_city}">Larry</td>
-            <td th:text="${flight.departure_time}">Larry</td>
-            <td th:text="${flight.arrival_city}">Larry</td>
-            <td th:text="${flight.arrival_time}">Larry</td>
+        <tr th:each="flight : ${flights}">
+            <td th:text="${flight.flight_num}">Flight Number</td>
+            <td th:text="${flight.departure_city}">From</td>
+            <td th:text="${flight.departure_time}">ETD</td>
+            <td th:text="${flight.arrival_city}">To</td>
+            <td th:text="${flight.arrival_time}">ETA</td>
+            <td><a href="#" class="btn btn-success">Book</a></td>
         </tr>
         </tbody>
     </table>
 </div>
 
-
-
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 </body>
 </html>

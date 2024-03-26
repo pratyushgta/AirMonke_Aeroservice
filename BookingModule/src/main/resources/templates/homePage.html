@@ -96,6 +96,64 @@
         }
 
     </style>
+    <script>
+        $(function () {
+            $("#departureDate").datepicker();
+            $("#returnDate").datepicker();
+            $('input[type=radio][name=flightType]').change(function () {
+                if (this.value === 'oneWay') {
+                    $('#returnDate').prop('disabled', true);
+                } else if (this.value === 'roundTrip') {
+                    $('#returnDate').prop('disabled', false);
+                }
+            });
+
+            $('#bookingForm').submit(function (event) {
+                // Prevent form submission if any validation fails
+                if (!validateForm()) {
+                    event.preventDefault();
+                }
+            });
+
+            function validateForm() {
+                var departureCity = $('#route_from').val();
+                var arrivalCity = $('#route_to').val();
+                var adultCount = parseInt($('#adultCount').val());
+                var childCount = parseInt($('#childCount').val());
+                var departureDate = new Date($('#departureDate').val());
+                var returnDate = new Date($('#returnDate').val());
+
+                // Departure city cannot be same as arrival city
+                if (departureCity === arrivalCity) {
+                    alert('Departure city cannot be same as arrival city');
+                    return false;
+                }
+
+                // Adults and children cannot exceed 5 each
+                if (adultCount > 5 || childCount > 5) {
+                    alert('Adults and children cannot exceed 5 each');
+                    return false;
+                }
+
+                // Departure date cannot be before today
+                var today = new Date();
+                today.setHours(0, 0, 0, 0);
+                if (departureDate < today) {
+                    alert('Departure date cannot be before today');
+                    return false;
+                }
+
+                // Arrival date cannot be before departure date
+                if ($('#returnDate').is(':enabled') && returnDate < departureDate) {
+                    alert('Arrival date cannot be before departure date');
+                    return false;
+                }
+
+                // All validations passed
+                return true;
+            }
+        });
+    </script>
 </head>
 <body>
 <!-- Navigation bar -->
@@ -118,7 +176,7 @@
         </div>
         <div class="login-btn-container">
             <ul class="nav navbar-nav">
-                <li><a href="#" th:href="@{/logout}">Logout</a></li>
+                <li><a href="#" th:href="@{/book/account}">My Account</a></li>
             </ul>
         </div>
     </div>

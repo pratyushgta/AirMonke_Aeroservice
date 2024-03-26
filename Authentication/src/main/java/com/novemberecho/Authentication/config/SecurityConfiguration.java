@@ -38,7 +38,7 @@ public class SecurityConfiguration {
                                 "/img/**",
                                 "/accounts/registration",
                                 "/accounts/login",
-                                "/search/**",
+                                "/book/**",
                                 "/").permitAll()
                         .requestMatchers("/accounts/view-accounts/**").hasAuthority("ROLE_ADMIN")
                         .anyRequest().authenticated()

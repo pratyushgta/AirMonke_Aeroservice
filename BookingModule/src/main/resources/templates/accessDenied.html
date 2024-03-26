@@ -104,21 +104,21 @@
         <div class="nav-menu-container">
             <!-- Left-aligned menu -->
             <ul class="nav navbar-nav">
-                <li><a href="#" th:href="@{/accounts/home}">Home</a></li>
-                <li><a href="#">Book</a></li>
-                <li><a href="#">Manage</a></li>
+                <li><a href="#" th:href="@{/book/home}">Book</a></li>
+                <li><a href="#" th:href="@{/book/manage}">Manage</a></li>
+                <li><a href="#" th:href="@{/book/all-routes}">Routes</a></li>
             </ul>
         </div>
         <div class="navbar-header">
             <!-- Navbar brand with image centered -->
-            <a class="navbar-brand" href="#" th:href="@{/accounts/home}">
+            <a class="navbar-brand" href="#" th:href="@{/book/home}">
                 <img src="https://github.com/pratyushgta/AirMonke_Aeroplan/blob/master/app/src/main/res/drawable/airmonke_logo_only.png?raw=true"
                      alt="AirMonkeLogo">
             </a>
         </div>
         <div class="login-btn-container">
             <ul class="nav navbar-nav">
-                <li><a href="#" th:href="@{/admin/account}">My Account</a></li>
+                <li><a href="#" th:href="@{/book/account}">My Account</a></li>
             </ul>
         </div>
     </div>
@@ -128,6 +128,6 @@
 <br>
 <br>
 <br>
-<h1>Uh oh! Looks like you're trying to enter the backrooms!</h1>
+<h3>Uh oh! Looks like we don't have any upcoming flights!</h3>
 </body>
 </html>

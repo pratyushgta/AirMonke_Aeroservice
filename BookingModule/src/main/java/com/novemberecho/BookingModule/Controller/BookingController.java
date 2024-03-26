@@ -70,9 +70,17 @@ public class BookingController {
         ResponseEntity<Flight[]> response = restTemplate.getForEntity(url, Flight[].class);
         Flight[] flightsArray = response.getBody();
         List<Flight> flightList = Arrays.asList(flightsArray);
-
-        model.addAttribute("flights", flightList);
-        return "searchPage";
+        if (flightList.isEmpty()) {
+            return "accessDenied";
+        } else {
+            model.addAttribute("flights", flightList);
+            return "searchPage";
+        }
     }
 
+
+    @GetMapping("/account")
+    public String account() {
+        return "redirect:http://localhost:9090/accounts/myAccount";
+    }
 }

@@ -167,6 +167,11 @@ public class AdminController {
 
         return "adminModifyFlightAdd";
     }
+
+    @GetMapping("/account")
+    public String account() {
+        return "redirect:http://localhost:9090/accounts/myAccount";
+    }
 }
 
 

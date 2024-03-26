@@ -5,12 +5,18 @@ import com.novemberecho.Authentication.DTO.UserRegistrationDto;
 import com.novemberecho.Authentication.Entity.User;
 import com.novemberecho.Authentication.Repository.UserRepository;
 import com.novemberecho.Authentication.Service.CustomUserDetails;
+import com.novemberecho.Authentication.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Arrays;
+import java.util.List;
 
 
 @Controller
@@ -40,9 +46,24 @@ public class MainController {
         }
     }
 
-    @GetMapping("/view-accounts")
-    public String admin_accounts() {
-        return "view-accounts";
+    @GetMapping("/all-routes")
+    public String allRoutes() {
+        return "redirect:http://localhost:9090/book/all-routes";
+
+    }
+
+    @GetMapping("/myAccount")
+    public String myAccount(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null) {
+            //return restTemplate.getForObject("http://localhost:9090/admin/admin-home", Flight[].class);
+            return "loginPage";
+        } else {
+            Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+            String email = loggedInUser.getName();
+            model.addAttribute("user", userRepository.findByEmail(email));
+            return "myAccount";
+        }
     }
 
     @GetMapping("/accessDenied")
@@ -62,27 +83,3 @@ public class MainController {
         return name;
     }
 }
-
-    /*@GetMapping
-    public String currentUser(@ModelAttribute("user") UserRegistrationDto userDto, BindingResult result, Model model) {
-        Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
-        String email = loggedInUser.getName();
-
-        User user = userRepository.findByEmail(email);
-        String firstname = user.getFirstName();
-        model.addAttribute("firstName", firstname);
-        model.addAttribute("emailAddress", email);
-
-        return "homePage"; //this is the name of my template
-    }*/
-
-
- /*@GetMapping("/home")
-    public String display() {
-        ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:8081/homeX", String.class);
-        if (response.getStatusCode().is2xxSuccessful()) {
-            return "redirect:/homeX";
-        } else {
-            return "accessDenied";
-        }
-    }*/
