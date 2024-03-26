@@ -2,12 +2,15 @@ package com.novemberecho.AdminModule.DTO;
 
 import com.novemberecho.AdminModule.Entity.Routes;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class FlightDto {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@Id
+   // @GeneratedValue(strategy = GenerationType.AUTO)
     private Long flight_id;
     private String flight_num;
     private String departure_time;

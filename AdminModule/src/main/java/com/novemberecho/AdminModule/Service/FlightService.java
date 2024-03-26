@@ -1,5 +1,6 @@
 package com.novemberecho.AdminModule.Service;
 
+import com.novemberecho.AdminModule.DTO.FlightDto;
 import com.novemberecho.AdminModule.Entity.Flight;
 import com.novemberecho.AdminModule.Entity.Routes;
 import com.novemberecho.AdminModule.Repository.FlightRepository;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class FlightService {
@@ -41,6 +43,11 @@ public class FlightService {
         }
         return responseFlightData;
     }
+
+   /* public List<FlightDto> getAllEmployees_DTO() {
+        List<Flight> employees = flightRepository.findAll();
+        return employees.stream().map(EmployeeMapper::mapToEmployeeDTO).collect(Collectors.toList());
+    }*/
 
 
 

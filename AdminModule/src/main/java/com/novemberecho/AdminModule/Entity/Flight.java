@@ -1,10 +1,13 @@
 package com.novemberecho.AdminModule.Entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 @Entity
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Flight {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,11 +19,11 @@ public class Flight {
     private String arrival_city;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "arrival_routes_id", referencedColumnName = "routes_id") //column name of routes id
     private Routes arrival_routes;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "departure_routes_id", referencedColumnName = "routes_id") //column name of routes id
     private Routes departure_routes;
     private int total_seats;
