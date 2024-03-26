@@ -40,7 +40,7 @@ public class SecurityConfiguration {
                                 "/accounts/login",
                                 "/book/**",
                                 "/").permitAll()
-                        .requestMatchers("/accounts/view-accounts/**").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form.loginPage("/accounts/login")
