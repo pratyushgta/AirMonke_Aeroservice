@@ -60,7 +60,7 @@ public class REST_AdminController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/search-flights")
+    @GetMapping("/search-flights/{routeFrom}/{routeTo}")
     public ResponseEntity<List<Flight>> searchFlights(@PathVariable String routeFrom,
                                                       @PathVariable String routeTo) {
 

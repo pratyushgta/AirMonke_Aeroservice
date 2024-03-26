@@ -43,7 +43,7 @@ public class AdminController {
 
     @GetMapping("/home")
     public String home() {
-        return "redirect:http://localhost:9090/search/home";
+        return "redirect:http://localhost:9090/book/home";
     }
 
     /*

@@ -36,7 +36,7 @@ public class MainController {
             //return restTemplate.getForObject("http://localhost:9090/admin/admin-home", Flight[].class);
             return "redirect:http://localhost:9090/admin/admin-home";
         } else {
-            return "redirect:http://localhost:9090/search/home";
+            return "redirect:http://localhost:9090/book/home";
         }
     }
 

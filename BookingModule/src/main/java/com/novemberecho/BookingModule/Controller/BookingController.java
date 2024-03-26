@@ -55,19 +55,24 @@ public class BookingController {
         return "AllRoutes";
     }
 
-   /* @GetMapping("/search-results")
+    /*@PostMapping("/search-results")
     public String searchResults(Model model) {
+        model.addAttribute("Routes", new Routes());
+    }*/
+
+    @GetMapping("/search-results")
+    public String searchResults(@RequestParam("route_from") String routeFrom, @RequestParam("route_to") String routeTo, Model model) {
 
 
         //String url = "http://AdminModule:8082/admin/search-flights?routeFrom=" + routeFrom +
         //"&routeTo=" + routeTo;
-        String url = "http://AdminModule:8082/admin/search-flights/{" + routeTo + "}/{" + routeFrom + "}";
+        String url = "http://AdminModule:8082/admin/search-flights/" + routeTo + "/" + routeFrom;
         ResponseEntity<Flight[]> response = restTemplate.getForEntity(url, Flight[].class);
         Flight[] flightsArray = response.getBody();
         List<Flight> flightList = Arrays.asList(flightsArray);
 
         model.addAttribute("flights", flightList);
         return "searchPage";
-    }*/
+    }
 
 }
