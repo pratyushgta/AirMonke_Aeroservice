@@ -1,6 +1,5 @@
 package com.novemberecho.BookingModule.Entity;
 
-import com.novemberecho.AdminModule.Entity.Routes;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,7 +17,7 @@ public class Flight {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "arrival_routes_id", referencedColumnName = "routes_id") //column name of routes id
-    private com.novemberecho.AdminModule.Entity.Routes arrival_routes;
+    private Routes arrival_routes;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "departure_routes_id", referencedColumnName = "routes_id") //column name of routes id

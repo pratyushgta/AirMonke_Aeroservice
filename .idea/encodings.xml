@@ -5,11 +5,11 @@
     <file url="file://$PROJECT_DIR$/AdminModule/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Authentication/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/BookingModule/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BookingModuleX/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/EurekaServer/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/SearchModule/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/api-gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/eureka-client/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eureka-client2/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/major/src/main/java" charset="UTF-8" />
   </component>
 </project>
