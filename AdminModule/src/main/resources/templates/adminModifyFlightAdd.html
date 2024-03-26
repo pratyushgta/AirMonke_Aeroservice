@@ -96,7 +96,7 @@
 <br>
 <div class="container">
     <h3>Add a new Product</h3>
-    <form th:action="@{/admin/modifyFlight/add}" method="post" th:object="${FlightDTO}" enctype="multipart/form-data">
+    <form id="flightForm" th:action="@{/admin/modifyFlight/add}" method="post" th:object="${FlightDTO}" enctype="multipart/form-data">
         <div class="row">
             <div class="col-sm-5">
 
@@ -113,8 +113,8 @@
                     <select class="form-control" th:field="*{routes_id}" id="route_from" name="route_from">
                         <option th:each="route :${Routes}"
                                 th:value="${route.routes_id}"
-                                th:text="${route.destination_from}"
-                        >
+                                th:text="${route.city}"
+                        ></option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -127,8 +127,8 @@
                     <select class="form-control" th:field="*{routes_id}" id="route_to" name="route_to">
                         <option th:each="route :${Routes}"
                                 th:value="${route.routes_id}"
-                                th:text="${route.destination_to}"
-                        >
+                                th:text="${route.city}"
+                        ></option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -137,7 +137,7 @@
                            placeholder="ETD">
                 </div>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" onclick="validateForm()" class="btn btn-primary">Submit</button>
             </div>
         </div>
     </form>
@@ -154,7 +154,17 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
 <script>
+    function validateForm() {
+        var departureCity = document.getElementById("route_from").value;
+        var arrivalCity = document.getElementById("route_to").value;
 
+        if (departureCity === arrivalCity) {
+            alert("Departure city cannot be the same as arrival city!");
+            return false;
+        }
+
+        document.getElementById("flightForm").submit();
+    }
 </script>
 </body>
 </html>

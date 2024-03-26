@@ -116,9 +116,9 @@
             <!--<th scope="row" th:text="${iStat.index + 1}">1</th>-->
             <td th:text="${flight.flight_id}">Larry</td>
             <td th:text="${flight.flight_num}">Larry</td>
-            <td th:text="${flight.routes.destination_from}">Larry</td>
+            <td th:text="${flight.departure_city}">Larry</td>
             <td th:text="${flight.departure_time}">Larry</td>
-            <td th:text="${flight.routes.destination_to}">Larry</td>
+            <td th:text="${flight.arrival_city}">Larry</td>
             <td th:text="${flight.arrival_time}">Larry</td>
 
             <td><a href="" th:href="@{/admin/modifyFlight/delete/{id}(id=${flight.flight_id})}" class="btn btn-danger">Delete</a></td>

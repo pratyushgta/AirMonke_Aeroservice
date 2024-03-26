@@ -31,6 +31,8 @@ public class FlightService {
         return flightRepository.findById(id);
     }
 
+
+
     /*public List<Flight> getAllFlightByRoute(int id) {
         return flightRepository.findAllByRoutes_id(id);
     }*/

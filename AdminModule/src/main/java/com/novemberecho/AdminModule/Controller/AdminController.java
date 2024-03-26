@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -121,9 +122,14 @@ public class AdminController {
         Flight flight = new Flight();
         flight.setFlight_id(flightDto.getFlight_id());
         flight.setFlight_num(flightDto.getFlight_num());
-        flight.setRoutes(routesService.getRoutesbyID(flightDto.getRoutes_id()).get());
+        //flight.setRoutes(routesService.getRoutesbyID(flightDto.getRoutes_id()).get());
+        List<Routes> routes = routesService.getAllRoutes();
+        flight.setDeparture_city(routes.get(0).getCity());
         flight.setDeparture_time(flightDto.getDeparture_time());
+        flight.setArrival_city(routes.get(1).getCity());
         flight.setArrival_time(flightDto.getArrival_time());
+
+        flightService.addFlight(flight);
 
         return "redirect:/admin/modifyFlight";
     }
