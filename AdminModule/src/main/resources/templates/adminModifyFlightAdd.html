@@ -110,7 +110,7 @@
                 </div>
                 <div class="form-group">
                     <label for="route_from">Departure from</label>
-                    <select class="form-control" th:field="*{routes_id}" id="route_from" name="route_from">
+                    <select class="form-control" th:field="*{routes_id_departure}" id="route_from" name="route_from">
                         <option th:each="route :${Routes}"
                                 th:value="${route.routes_id}"
                                 th:text="${route.city}"
@@ -124,7 +124,7 @@
                 </div>
                 <div class="form-group">
                     <label for="route_to">Arrival at</label>
-                    <select class="form-control" th:field="*{routes_id}" id="route_to" name="route_to">
+                    <select class="form-control" th:field="*{routes_id_arrival}" id="route_to" name="route_to">
                         <option th:each="route :${Routes}"
                                 th:value="${route.routes_id}"
                                 th:text="${route.city}"

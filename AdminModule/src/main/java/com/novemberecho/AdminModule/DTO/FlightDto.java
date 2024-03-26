@@ -12,6 +12,9 @@ public class FlightDto {
     private String flight_num;
     private String departure_time;
     private String arrival_time;
-    private int routes_id;
+    private int routes_id_arrival;
+    private int routes_id_departure;
     private int total_seats;
+    private String departure_city;
+    private String arrival_city;
 }

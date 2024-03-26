@@ -118,11 +118,12 @@ public class AdminController {
 
     @PostMapping("/modifyFlight/add")
     public String postFlightAdd(@ModelAttribute("FlightDTO") FlightDto flightDto) {
-        //flightService.addFlight(flightDto);
         Flight flight = new Flight();
         flight.setFlight_id(flightDto.getFlight_id());
         flight.setFlight_num(flightDto.getFlight_num());
-        //flight.setRoutes(routesService.getRoutesbyID(flightDto.getRoutes_id()).get());
+        // flight.setRoutes(routesService.getRoutesbyID(flight.getRoutes().getRoutes_id()).get());
+        flight.setArrival_routes(routesService.getAllRoutes().get(0));
+        flight.setDeparture_routes(routesService.getAllRoutes().get(1));
         List<Routes> routes = routesService.getAllRoutes();
         flight.setDeparture_city(routes.get(0).getCity());
         flight.setDeparture_time(flightDto.getDeparture_time());
@@ -142,14 +143,27 @@ public class AdminController {
 
     @GetMapping("/modifyFlight/update/{id}")
     public String modifyFlightUpdate(@PathVariable int id, Model model) {
-        Optional<Flight> flight = flightService.getFlightbyID(id);
-        if (flight.isPresent()) {
-            model.addAttribute("Flight", flight.get());
-            return "adminModifyFlightAdd";
-        } else {
-            return "accessDenied";
-        }
+        Flight flight = flightService.getFlightbyID(id).get();
+        FlightDto flightDto = new FlightDto();
+        flightDto.setFlight_id(flight.getFlight_id());
+        flightDto.setFlight_num(flight.getFlight_num());
+        flightDto.setRoutes_id_arrival(flight.getArrival_routes().getRoutes_id());
+        flightDto.setRoutes_id_departure(flight.getDeparture_routes().getRoutes_id());
+        flightDto.setDeparture_city(flight.getDeparture_city());
+        flightDto.setArrival_city(flight.getArrival_city());
+        flightDto.setDeparture_time(flight.getDeparture_time());
+        flightDto.setArrival_time(flight.getArrival_time());
+
+        model.addAttribute("FlightDTO", new FlightDto());
+        model.addAttribute("Routes", routesService.getAllRoutes());
+
+        return "adminModifyFlightAdd";
     }
+}
+
+
+
+
 
 
 
@@ -161,4 +175,3 @@ public class AdminController {
         routesService.addRoute(routes);
         return "redirect:/admin/modifyRoutes";
     }*/
-}

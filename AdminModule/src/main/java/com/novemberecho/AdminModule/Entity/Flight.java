@@ -16,9 +16,12 @@ public class Flight {
     private String arrival_city;
 
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "arrival_routes_id", referencedColumnName = "routes_id") //column name of routes id
+    private Routes arrival_routes;
 
-    /*@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "routes_id", referencedColumnName = "routes_id") //column name of routes id
-    private Routes routes;*/
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "departure_routes_id", referencedColumnName = "routes_id") //column name of routes id
+    private Routes departure_routes;
     private int total_seats;
 }
