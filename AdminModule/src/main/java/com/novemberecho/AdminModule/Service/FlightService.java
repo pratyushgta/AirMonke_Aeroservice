@@ -8,6 +8,7 @@ import com.novemberecho.AdminModule.Repository.RoutesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -35,7 +36,8 @@ public class FlightService {
 
     public List<Flight> getFlightbyCity(String arrival, String departure) {
         List<Flight> allFlights = flightRepository.findAll();
-        List<Flight> responseFlightData = null;
+        List<Flight> responseFlightData = new ArrayList<>(); // Initialize the list
+
         for (int i = 0; i < allFlights.size(); i++) {
             if (allFlights.get(i).getArrival_city().equalsIgnoreCase(arrival) && allFlights.get(i).getDeparture_city().equalsIgnoreCase(departure)) {
                 responseFlightData.add(allFlights.get(i));
@@ -43,17 +45,4 @@ public class FlightService {
         }
         return responseFlightData;
     }
-
-   /* public List<FlightDto> getAllEmployees_DTO() {
-        List<Flight> employees = flightRepository.findAll();
-        return employees.stream().map(EmployeeMapper::mapToEmployeeDTO).collect(Collectors.toList());
-    }*/
-
-
-
-
-
-    /*public List<Flight> getAllFlightByRoute(int id) {
-        return flightRepository.findAllByRoutes_id(id);
-    }*/
 }

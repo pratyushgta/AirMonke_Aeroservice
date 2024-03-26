@@ -93,7 +93,7 @@ public class AdminController {
 
     @GetMapping("/modifyRoutes/update/{id}")
     public String modifyRoutesUpdate(@PathVariable int id, Model model) {
-        Optional<Routes> route = routesService.getRoutesbyID(id);
+        Optional<Optional<Routes>> route = Optional.ofNullable(routesService.getRoutesbyID(id));
         if (route.isPresent()) {
             model.addAttribute("Routes", route.get());
             return "adminModifyRoutesAdd";
@@ -121,13 +121,21 @@ public class AdminController {
         Flight flight = new Flight();
         flight.setFlight_id(flightDto.getFlight_id());
         flight.setFlight_num(flightDto.getFlight_num());
+        //flight.setArrival_routes(routesService.getAllRoutes().get(flightDto.getRoutes_id_arrival()));
+        //flight.setDeparture_routes(routesService.getAllRoutes().get(flightDto.getRoutes_id_departure()));
+        flight.setArrival_routes(routesService.getRoutesbyID(flightDto.getRoutes_id_arrival()).get());
+        flight.setDeparture_routes(routesService.getRoutesbyID(flightDto.getRoutes_id_departure()).get());
         // flight.setRoutes(routesService.getRoutesbyID(flight.getRoutes().getRoutes_id()).get());
-        flight.setArrival_routes(routesService.getAllRoutes().get(0));
-        flight.setDeparture_routes(routesService.getAllRoutes().get(1));
+        // flight.setArrival_routes(routesService.getAllRoutes().get(0));
+        //flight.setArrival_routes(routesService.getRoutesbyID(flight.getArrival_routes().getRoutes_id()));
+        //flight.setDeparture_routes(routesService.getAllRoutes().get(1));
+        //flight.setDeparture_routes(routesService.getRoutesbyID(flight.getDeparture_routes().getRoutes_id()));
         List<Routes> routes = routesService.getAllRoutes();
-        flight.setDeparture_city(routes.get(0).getCity());
+        //flight.setDeparture_city(routes.get(0).getCity());
+        flight.setDeparture_city(routesService.getRoutesbyID(flightDto.getRoutes_id_departure()).get().getCity());
+        flight.setArrival_city(routesService.getRoutesbyID(flightDto.getRoutes_id_arrival()).get().getCity());
         flight.setDeparture_time(flightDto.getDeparture_time());
-        flight.setArrival_city(routes.get(1).getCity());
+        //flight.setArrival_city(routes.get(1).getCity());
         flight.setArrival_time(flightDto.getArrival_time());
 
         flightService.addFlight(flight);

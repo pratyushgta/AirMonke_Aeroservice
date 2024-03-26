@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>AirMonke Hub</title>
+    <title>Flight Booking</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
     <!-- Include jQuery UI CSS -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!-- Include jQuery -->
@@ -13,137 +13,190 @@
     <!-- Include jQuery UI -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!-- jQuery UI Datepicker setup -->
-</head>
-<script>
-    $(function () {
-        $("#dob").datepicker();
-    });
-</script>
-<style>
-    body {
-        background-color: rgb(3, 9, 17);
-        color: #D8D5BE; /* Set font color to #D8D5BE */
-    }
-
-    /* Change font color of navigation bar links */
-    .navbar-inverse .navbar-nav > li > a {
-        color: #030911;
-    }
-
-    /* Change font color of form labels */
-    .form-group label.control-label {
-        color: #D8D5BE;
-    }
-
-    /* Change font color of form input fields */
-    .form-control {
-        color: #030911;
-    }
-
-    /* Change font color of button text */
-    .btn {
-        color: #D8D5BE;
-    }
-
-    .btn-success {
-        background-color: rgb(0, 99, 99);
-    }
-
-    /* Center logo in navbar */
-    .navbar-brand {
-        position: absolute;
-        width: auto;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .navbar-brand img {
-        max-height: 40px;
-    }
-
-    .login-btn-container {
-        float: right;
-        margin-top: 10px;
-    }
-
-    .nav-menu-container {
-        float: left;
-        margin-top: 10px;
-    }
-
-    .navbar-inverse {
-        background-color: #FFA300;
-    }
-
-    .navbar {
-        border-bottom: 4px solid #825dc7;
-    }
-
-    @media (max-width: 767px) {
-        .nav-menu-container {
-            float: none;
-            margin-top: 0;
-            text-align: center;
+    <style>
+        body {
+            background-color: rgb(216, 213, 190);
+            color: #030911; /* Set font color to #D8D5BE */
         }
-    }
 
-    @media (max-width: 767px) {
+        /* Change font color of navigation bar links */
+        .navbar-inverse .navbar-nav > li > a {
+            color: #030911;
+        }
+
+
+        /* Center logo in navbar */
+        .navbar-brand {
+            position: absolute;
+            width: auto;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .navbar-brand img {
+            max-height: 40px;
+        }
+
         .login-btn-container {
-            float: none;
-            margin-top: 0;
-            text-align: center;
+            float: right;
+            margin-top: 10px;
         }
-    }
 
-</style>
+        .nav-menu-container {
+            float: left;
+            margin-top: 10px;
+        }
+
+        .navbar-inverse {
+            background-color: #FFA300;
+        }
+
+        .navbar {
+            border-bottom: 4px solid #825dc7;
+        }
+
+        @media (max-width: 767px) {
+            .nav-menu-container {
+                float: none;
+                margin-top: 0;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .login-btn-container {
+                float: none;
+                margin-top: 0;
+                text-align: center;
+            }
+        }
+
+        .jumbotron {
+            background-color: #f8f9fa;
+            padding: 80px 0;
+            margin-bottom: 0;
+        }
+
+        .card {
+            margin-top: 50px;
+            background-color: #f8f9fa;
+            margin-bottom: 20px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title {
+            color: #007bff;
+        }
+
+        .card-text {
+            color: #6c757d;
+        }
+
+    </style>
 </head>
 <body>
-<!--navigation bar-->
+<!-- Navigation bar -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="nav-menu-container">
             <!-- Left-aligned menu -->
             <ul class="nav navbar-nav">
-                <li><a href="#" th:href="@{/home}">Home</a></li>
-                <li><a href="#">Book</a></li>
-                <li><a href="#">Manage</a></li>
+                <li><a href="#" th:href="@{/book/home}">Book</a></li>
+                <li><a href="#" th:href="@{/book/manage}">Manage</a></li>
+                <li><a href="#" th:href="@{/book/all-routes}">Routes</a></li>
             </ul>
         </div>
         <div class="navbar-header">
             <!-- Navbar brand with image centered -->
-            <a class="navbar-brand" href="#" th:href="@{/accounts/home}">
+            <a class="navbar-brand" href="#" th:href="@{/book/home}">
                 <img src="https://github.com/pratyushgta/AirMonke_Aeroplan/blob/master/app/src/main/res/drawable/airmonke_logo_only.png?raw=true"
                      alt="AirMonkeLogo">
             </a>
         </div>
         <div class="login-btn-container">
             <ul class="nav navbar-nav">
-                <li sec:authorize="isAuthenticated()">
-                    <a th:href="@{/accounts/logout}">Logout</a>
-                </li>
-                <li sec:authorize="!isAuthenticated()">
-                    <a th:href="@{/accounts/login}">Login</a>
-                </li>
+                <li><a href="#" th:href="@{/logout}">Logout</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<br>
-<br>
-<br>
-<br>
-<div sec:authorize="isAuthenticated()">Text visible only to authenticated users.</div>
-Authenticated username:
-<div sec:authentication="name"></div>
-Authenticated user's firstName:
-<span th:text="${firstName}"></span>
+<br><br><br><br>
+<div class="container">
+    <h3>Flight Booking</h3>
+    <form id="bookingForm" th:action="@{/book/search-results}" method="get" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-sm-5">
+                <!-- Inner container 1: Departure and Arrival -->
+                <div class="form-group">
+                    <label for="route_from">Departure from</label>
+                    <select class="form-control" id="route_from" name="route_from">
+                        <option th:each="route :${routes}"
+                                th:text="${route.city}"
+                        ></option>
+                    </select>
+                </div>
 
-<!--
-<h1 th:if="${#authorization.expression('isAuthenticated()')}"><span sec:authentication="">X</span>
-</h1>
-<h1 th:if="${not #authorization.expression('isAuthenticated()')}">Welcome User</h1>
+                <div class="form-group">
+                    <label for="route_to">Arrival At</label>
+                    <select class="form-control" id="route_to" name="route_to">
+                        <option th:each="route :${routes}"
+                                th:text="${route.city}"
+                        ></option>
+                    </select>
+                </div>
 
-<p>Welcome <span sec:authentication="principal.getUsername()"></span></span></p>-->
+                <!-- Inner container 2: Adult and Child counters -->
+                <div class="form-group">
+                    <label for="adultCount">Adults</label>
+                    <input type="number" class="form-control" id="adultCount" name="adultCount" min="0" max="5">
+                </div>
+                <div class="form-group">
+                    <label for="childCount">Children</label>
+                    <input type="number" class="form-control" id="childCount" name="childCount" min="0" max="5">
+                </div>
+
+                <!-- Inner container 3: Round trip and One way -->
+                <div class="form-group">
+                    <label>Flight Type</label><br>
+                    <label class="radio-inline">
+                        <input type="radio" name="flightType" value="roundTrip"> Round Trip
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="flightType" value="oneWay"> One Way
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="departureDate">Departure Date</label>
+                    <input type="text" class="form-control" id="departureDate" name="departureDate">
+                </div>
+                <div class="form-group">
+                    <label for="returnDate">Return Date</label>
+                    <input type="text" class="form-control" id="returnDate" name="returnDate" disabled>
+                </div>
+
+                <button type="submit" style="margin: 20px 0" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    $(function () {
+        $("#departureDate").datepicker();
+        $("#returnDate").datepicker();
+        $('input[type=radio][name=flightType]').change(function () {
+            if (this.value === 'oneWay') {
+                $('#returnDate').prop('disabled', true);
+            } else if (this.value === 'roundTrip') {
+                $('#returnDate').prop('disabled', false);
+            }
+        });
+    });
+</script>
+
 </body>
 </html>

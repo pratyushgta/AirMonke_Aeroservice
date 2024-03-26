@@ -1,6 +1,7 @@
 package com.novemberecho.BookingModule.Controller;
 
 import com.novemberecho.BookingModule.Entity.Flight;
+import com.novemberecho.BookingModule.Entity.Routes;
 import com.novemberecho.BookingModule.Service.RoutesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
@@ -8,6 +9,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -26,31 +28,46 @@ public class BookingController {
 
 
     @GetMapping("/home")
-    public String homePage() {
+    public String homePage(Model model) {
+        ResponseEntity<Routes[]> response = restTemplate.getForEntity(
+                "http://AdminModule:8082/admin/fetch-all-routes",
+                Routes[].class
+        );
+
+        Routes[] routesArray = response.getBody();
+        List<Routes> routesList = Arrays.asList(routesArray);
+        model.addAttribute("routes", routesList);
         return "homePage";
     }
 
-    /*@GetMapping("/fetch")
-    public String searchFlight() {
-        String flightList = restTemplate.getForObject("http://AdminModule:8082/admin/fetch/Delhi}/Mumbai", String.class);
-        System.out.println(flightList);
-        return "redirect:/admin/modifyFlight";
-    }*/
+    @GetMapping("/all-routes")
+    public String allRoutes(Model model) {
+        ResponseEntity<Flight[]> response = restTemplate.getForEntity(
+                "http://AdminModule:8082/admin/fetch-all-flights",
+                Flight[].class
+        );
 
+        Flight[] flightsArray = response.getBody();
+        List<Flight> flightList = Arrays.asList(flightsArray);
+
+        model.addAttribute("flights", flightList);
+
+        return "AllRoutes";
+    }
+
+   /* @GetMapping("/search-results")
+    public String searchResults(Model model) {
+
+
+        //String url = "http://AdminModule:8082/admin/search-flights?routeFrom=" + routeFrom +
+        //"&routeTo=" + routeTo;
+        String url = "http://AdminModule:8082/admin/search-flights/{" + routeTo + "}/{" + routeFrom + "}";
+        ResponseEntity<Flight[]> response = restTemplate.getForEntity(url, Flight[].class);
+        Flight[] flightsArray = response.getBody();
+        List<Flight> flightList = Arrays.asList(flightsArray);
+
+        model.addAttribute("flights", flightList);
+        return "searchPage";
+    }*/
 
 }
-
-
-
-
-
-
-
-
-
-
-    /*@PostMapping("/modifyRoutes/add")
-    public String postRoutesAdd(@ModelAttribute("Routes") Routes routes) {
-        routesService.addRoute(routes);
-        return "redirect:/admin/modifyRoutes";
-    }*/
