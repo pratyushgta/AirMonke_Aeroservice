@@ -2,6 +2,7 @@ package com.novemberecho.AdminModule.Controller;
 
 import com.novemberecho.AdminModule.DTO.FlightDto;
 import com.novemberecho.AdminModule.Entity.Flight;
+import com.novemberecho.AdminModule.Entity.Payment;
 import com.novemberecho.AdminModule.Entity.Routes;
 import com.novemberecho.AdminModule.Service.FlightService;
 import com.novemberecho.AdminModule.Service.RoutesService;
@@ -62,7 +63,18 @@ public class AdminController {
         Thread.sleep(3000);
         return flight;
     }*/
-
+    @GetMapping("/modifyprices")
+    public String modifyPricesAdd(Model model) {
+        model.addAttribute("Payment", new Payment());
+        return "adminModifyPricesAdd";
+    }
+//    @PostMapping("/modifypricessave")
+//    public String modifypricessave(@ModelAttribute Payment data){
+//        String url="http://localhost:8084/payment/data/"+data.getDeparture_city()+"/"
+//                +data.getArrival_city()+"/"+data.getPrice();
+//        restTemplate.postForObject(url,data,String.class);
+//        return "adminsuccess";
+//    }
     @GetMapping("/modifyRoutes")
     public String modifyRoutes(Model model) {
         model.addAttribute("Routes", routesService.getAllRoutes());

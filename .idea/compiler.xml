@@ -8,14 +8,15 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="EurekaServer" />
-        <module name="api-gateway" />
-        <module name="BookingModule" />
         <module name="AdminModule" />
         <module name="Authentication" />
+        <module name="api-gateway" />
+        <module name="BookingModule" />
+        <module name="payment" />
+        <module name="APIGateway" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="APIGateway" target="21" />
       <module name="eureka-client" target="21" />
       <module name="eureka-client2" target="21" />
       <module name="major" target="1.8" />
@@ -32,6 +33,7 @@
       <module name="eureka-client" options="-parameters" />
       <module name="eureka-client2" options="-parameters" />
       <module name="major" options="-parameters" />
+      <module name="payment" options="-parameters" />
     </option>
   </component>
 </project>

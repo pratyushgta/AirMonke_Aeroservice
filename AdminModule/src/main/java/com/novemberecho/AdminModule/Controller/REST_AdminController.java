@@ -1,6 +1,7 @@
 package com.novemberecho.AdminModule.Controller;
 
 import com.novemberecho.AdminModule.Entity.Flight;
+import com.novemberecho.AdminModule.Entity.Payment;
 import com.novemberecho.AdminModule.Entity.Routes;
 import com.novemberecho.AdminModule.Service.FlightService;
 import com.novemberecho.AdminModule.Service.RoutesService;
@@ -8,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -67,7 +65,14 @@ public class REST_AdminController {
         List<Flight> flights = flightService.getFlightbyCity(routeFrom, routeTo);
         return new ResponseEntity<>(flights, HttpStatus.OK);
     }
-
+    @PostMapping("/modifypricessave")
+    public ResponseEntity<Payment> modifypricessave(@ModelAttribute Payment data){
+        System.out.println(data.getArrival_city());
+        String url="http://payment:8084/payment/data/"+data.getDeparture_city()+"/"
+                +data.getArrival_city()+"/"+data.getPrice();
+        restTemplate.postForObject(url,data,String.class);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
     @GetMapping("/ms2")
     public String Microservice2Response() {
         return "Output from Microservice 2";
