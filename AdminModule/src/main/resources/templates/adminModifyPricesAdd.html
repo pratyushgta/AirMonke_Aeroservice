@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <title>AirMonke Admin Hub</title>
+    <style>
+        body {
+            background-color: rgb(216, 213, 190);
+            color: #030911; /* Set font color to #D8D5BE */
+        }
+
+        /* Change font color of navigation bar links */
+        .navbar-inverse .navbar-nav > li > a {
+            color: #030911;
+        }
+
+
+        /* Center logo in navbar */
+        .navbar-brand {
+            position: absolute;
+            width: auto;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .navbar-brand img {
+            max-height: 40px;
+        }
+
+        .login-btn-container {
+            float: right;
+            margin-top: 10px;
+        }
+
+        .nav-menu-container {
+            float: left;
+            margin-top: 10px;
+        }
+
+        .navbar-inverse {
+            background-color: #FFA300;
+        }
+
+        .navbar {
+            border-bottom: 4px solid #825dc7;
+        }
+
+        @media (max-width: 767px) {
+            .nav-menu-container {
+                float: none;
+                margin-top: 0;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .login-btn-container {
+                float: none;
+                margin-top: 0;
+                text-align: center;
+            }
+        }
+
+    </style>
+
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="nav-menu-container">
+            <!-- Left-aligned menu -->
+            <ul class="nav navbar-nav">
+                <li><a href="#" th:href="@{/admin/admin-home}">Admin Home</a></li>
+            </ul>
+        </div>
+        <div class="navbar-header">
+            <!-- Navbar brand with image centered -->
+            <a class="navbar-brand" href="#" th:href="@{/admin/home}">
+                <img src="https://github.com/pratyushgta/AirMonke_Aeroplan/blob/master/app/src/main/res/drawable/airmonke_logo_only.png?raw=true"
+                     alt="AirMonkeLogo">
+            </a>
+        </div>
+        <div class="login-btn-container">
+            <ul class="nav navbar-nav">
+                <li><a href="#" th:href="@{/admin/account}">My Account</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br>
+<br>
+<br>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <form th:action="@{/admin/modifypricessave}" method="post" th:object="${Payment}">
+                <h2>Modify Route Prices</h2>
+                <input type="hidden" name="id" th:field="*{payment_id}">
+                <div class="form-group">
+                    <label for="city">Departure</label>
+                    <input type="text" class="form-control" required th:field="*{departure_city}" name="city"
+                           id="city"
+                           placeholder="Enter from destination">
+
+                    <label for="airport">Arrival</label>
+                    <input type="text" class="form-control" required th:field="*{arrival_city}" name="airport"
+                           id="airport"
+                           placeholder="Enter airport">
+
+                    <label for="state">Price</label>
+                    <input type="text" class="form-control" required th:field="*{price}" name="state"
+                           id="state"
+                           placeholder="Enter state">
+
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+</html>
