@@ -65,14 +65,14 @@ public class REST_AdminController {
         List<Flight> flights = flightService.getFlightbyCity(routeFrom, routeTo);
         return new ResponseEntity<>(flights, HttpStatus.OK);
     }
-    @PostMapping("/modifypricessave")
+    /*@PostMapping("/modifypricessave")
     public ResponseEntity<Payment> modifypricessave(@ModelAttribute Payment data){
         System.out.println(data.getArrival_city());
         String url="http://payment:8084/payment/data/"+data.getDeparture_city()+"/"
                 +data.getArrival_city()+"/"+data.getPrice();
         restTemplate.postForObject(url,data,String.class);
         return new ResponseEntity<>(HttpStatus.OK);
-    }
+    }*/
     @GetMapping("/ms2")
     public String Microservice2Response() {
         return "Output from Microservice 2";

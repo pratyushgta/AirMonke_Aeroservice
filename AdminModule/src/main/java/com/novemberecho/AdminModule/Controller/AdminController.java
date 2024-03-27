@@ -66,9 +66,12 @@ public class AdminController {
     @GetMapping("/modifyprices")
     public String modifyPricesAdd(Model model) {
         model.addAttribute("Payment", new Payment());
+        model.addAttribute("Routes", routesService.getAllRoutes());
         return "adminModifyPricesAdd";
     }
-//    @PostMapping("/modifypricessave")
+
+
+    //    @PostMapping("/modifypricessave")
 //    public String modifypricessave(@ModelAttribute Payment data){
 //        String url="http://localhost:8084/payment/data/"+data.getDeparture_city()+"/"
 //                +data.getArrival_city()+"/"+data.getPrice();
@@ -178,6 +181,16 @@ public class AdminController {
         model.addAttribute("Routes", routesService.getAllRoutes());
 
         return "adminModifyFlightAdd";
+    }
+
+
+    @PostMapping("/modifypricessave")
+    public String modifypricessave(@ModelAttribute Payment data){
+        System.out.println(data.getArrival_city());
+        String url="http://payment:8084/payment/data/"+data.getDeparture_city()+"/"
+                +data.getArrival_city()+"/"+data.getPrice();
+        restTemplate.postForObject(url,data,String.class);
+        return "adminsuccess";
     }
 
     @GetMapping("/account")

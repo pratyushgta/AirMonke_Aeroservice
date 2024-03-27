@@ -1,6 +1,7 @@
 package com.novemberecho.BookingModule.Controller;
 
 import com.novemberecho.BookingModule.Entity.Flight;
+import com.novemberecho.BookingModule.Entity.Payment;
 import com.novemberecho.BookingModule.Entity.Routes;
 import com.novemberecho.BookingModule.Service.RoutesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,6 +77,17 @@ public class BookingController {
             model.addAttribute("flights", flightList);
             return "searchPage";
         }
+    }
+
+    @GetMapping("/get-prices/{departure_city}/{arrival_city}")
+    public String fetchPrices(@PathVariable("departure_city") String departure_city, @PathVariable("arrival_city") String arrival_city, Model model) {
+
+        //String url = "http://AdminModule:8082/admin/search-flights?routeFrom=" + routeFrom +
+        //"&routeTo=" + routeTo;
+        String url = "http://payment:8084/payment/fetch/" + departure_city + "/" + arrival_city;
+        Payment payment = restTemplate.getForEntity(url, Payment.class).getBody();
+        model.addAttribute("Payment", payment);
+        return "ticketPage";
     }
 
 

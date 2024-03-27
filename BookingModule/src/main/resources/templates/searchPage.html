@@ -145,7 +145,8 @@
             <td th:text="${flight.departure_time}">ETD</td>
             <td th:text="${flight.arrival_city}">To</td>
             <td th:text="${flight.arrival_time}">ETA</td>
-            <td><a href="#" class="btn btn-success">Book</a></td>
+            <td><a href="" th:href="@{/book/get-prices/{departure_city}/{arrival_city}(departure_city=${flight.departure_city}, arrival_city=${flight.arrival_city})}" class="btn btn-success">Book</a></td>
+
         </tr>
         </tbody>
     </table>

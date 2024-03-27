@@ -101,21 +101,47 @@
             <form th:action="@{/admin/modifypricessave}" method="post" th:object="${Payment}">
                 <h2>Modify Route Prices</h2>
                 <input type="hidden" name="id" th:field="*{payment_id}">
+
                 <div class="form-group">
-                    <label for="city">Departure</label>
-                    <input type="text" class="form-control" required th:field="*{departure_city}" name="city"
-                           id="city"
-                           placeholder="Enter from destination">
-
-                    <label for="airport">Arrival</label>
-                    <input type="text" class="form-control" required th:field="*{arrival_city}" name="airport"
-                           id="airport"
-                           placeholder="Enter airport">
-
+                    <div class="form-group">
+                        <label for="route_from">Departure from</label>
+                        <select class="form-control" th:field="*{departure_city}" id="route_from" name="route_from">
+                            <option th:each="route :${Routes}"
+                                    th:value="${route.city}"
+                                    th:text="${route.city}"
+                            ></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="route_to">Arrival at</label>
+                        <select class="form-control" th:field="*{arrival_city}" id="route_to" name="route_to">
+                            <option th:each="route :${Routes}"
+                                    th:value="${route.city}"
+                                    th:text="${route.city}"
+                            ></option>
+                        </select>
+                    </div>
                     <label for="state">Price</label>
                     <input type="text" class="form-control" required th:field="*{price}" name="state"
                            id="state"
                            placeholder="Enter state">
+                    <!--
+                   <label for="city">Departure</label>
+
+                   <input type="text" class="form-control" required th:field="*{departure_city}" name="city"
+                          id="city"
+                          placeholder="Enter from destination">
+
+                   <label for="airport">Arrival</label>
+                   <input type="text" class="form-control" required th:field="*{arrival_city}" name="airport"
+                          id="airport"
+                          placeholder="Enter airport">
+
+                   <label for="state">Price</label>
+                   <input type="text" class="form-control" required th:field="*{price}" name="state"
+                          id="state"
+                          placeholder="Enter state">
+                          -->
 
                 </div>
 
